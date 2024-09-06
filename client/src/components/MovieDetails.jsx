@@ -56,6 +56,18 @@ export default function MovieDetails({ modalRef, movie }) {
 }
 
 MovieDetails.propTypes = {
-  movie: PropTypes.element.isRequired,
-  modalRef: PropTypes.element.isRequired,
+  modalRef: PropTypes.shape({
+    current: PropTypes.shape({
+      showModal: PropTypes.func,
+      close: PropTypes.func,
+    }),
+  }).isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    URL: PropTypes.string.isRequired,
+    duration: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    classification: PropTypes.number.isRequired,
+    synopsis: PropTypes.string.isRequired,
+  }).isRequired,
 };
