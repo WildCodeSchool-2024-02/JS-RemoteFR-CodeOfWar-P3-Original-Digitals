@@ -22,8 +22,8 @@ class MovieRepository extends AbstractRepository {
 
   async searchByTitle(title) {
     const [rows] = await this.database.query(
-      `select * from ${this.table} where title like concat('%', ?, '%')`,
-      [title]
+      `select * from ${this.table} where title like ?`,
+      [`%${title}%`]
     );
     return rows;
   }

@@ -16,7 +16,13 @@ export default function MovieDetails({ modalRef, movie }) {
 
   return (
     <dialog className="dialog-details" ref={modalRef}>
-      <ReactPlayer url={movie.URL} width="100%" className="ReactPlayer" />
+      <ReactPlayer
+        controls
+        light
+        url={movie.URL}
+        width="100%"
+        className="ReactPlayer"
+      />
       <h2>{movie.title}</h2>
       <section className="section-infos">
         <p>
