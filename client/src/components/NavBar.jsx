@@ -5,6 +5,7 @@ import searchImg from "../assets/images/search.png";
 import burger from "../assets/images/burger.png";
 
 function NavBar() {
+  const [scrollPosition, setScrollPosition] = useState(0);
   const [search, setSearch] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -22,6 +23,14 @@ function NavBar() {
     setSearch(event.target.value);
   };
 
+  const handlePosition = () => {
+    setScrollPosition(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handlePosition);
+  }, []);
+
   useEffect(() => {
     if (search.length > 0) {
       navigate(`/movies/search/${search}`);
@@ -29,7 +38,7 @@ function NavBar() {
   }, [search, navigate]);
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrollPosition !== 0 ? "scrolled" : ""}`}>
       {searchOpen ? (
         <div className="search-container">
           <select name="select" id="select">
@@ -58,7 +67,6 @@ function NavBar() {
               src={burger}
               alt=""
             />
-
             <div className="links-list">
               <Link to="/" onClick={toggleMenu}>
                 Accueil

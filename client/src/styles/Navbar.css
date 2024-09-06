@@ -1,8 +1,18 @@
 .navbar {
   display: flex;
-  /* align-items: center; */
   height: 60px;
   background: none;
+  position: sticky;
+  top: 0;
+  transition: 0.5s;
+  border-radius: 0 0 8px 8px;
+}
+
+.scrolled {
+  background-color: rgba(0, 0, 0, 0.452);
+  backdrop-filter: blur(8px);
+  transition: 0.5s;
+  border-radius: 0 0 8px 8px;
 }
 
 .navbar > img {
@@ -26,6 +36,7 @@
 .search-input {
   padding: 0.5rem;
   border: none;
+  border-left: 1px black solid;
   border-radius: 0 8px 8px 0;
 }
 
@@ -64,6 +75,12 @@
   gap: 1rem;
   background: none;
   color: var(--primary-color);
+}
+
+.links-list {
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.795);
+  backdrop-filter: blur(8px);
 }
 
 .menu-dropdown a {
