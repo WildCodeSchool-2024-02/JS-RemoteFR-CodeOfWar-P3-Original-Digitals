@@ -14,6 +14,8 @@ export default function MovieDetails({ modalRef, movie }) {
     modalRef.current.close();
   };
 
+  console.info("depuis movieDetail", movie);
+
   return (
     <dialog className="dialog-details" ref={modalRef}>
       <ReactPlayer
@@ -30,6 +32,7 @@ export default function MovieDetails({ modalRef, movie }) {
         </p>
         <p> Sortie : {releaseDate}</p>
         <p> Classification : - {movie.classification}</p>
+        <p>Genre : {movie.type}</p>
       </section>
       <h3> Acteurs</h3>
       <section className="actor-list">
@@ -75,5 +78,6 @@ MovieDetails.propTypes = {
     date: PropTypes.string.isRequired,
     classification: PropTypes.number.isRequired,
     synopsis: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   }).isRequired,
 };
