@@ -20,17 +20,18 @@ export function getMoviesByTitle({ params }) {
     });
 }
 
-export function getCategories() {
-  return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/movies/categories`)
-    .then((response) => response.data)
-    .catch((error) => {
-      console.error(error);
-      return [];
-    });
-}
+// export function getMoviesByCategories({ params }) {
+//   console.info("depuis getMovieByCategories", params);
+//   return axios
+//     .get(`${import.meta.env.VITE_API_URL}/api/movies/categories/${params}`)
+//     .then((response) => response.data)
+//     .catch((error) => {
+//       console.error(error);
+//       return [];
+//     });
+// }
 
-export const categoriesMoviesLoader = async () => {
+export const getMoviesWithCategories = async () => {
   const [categories, movies] = await Promise.all([
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/movies/categories`)

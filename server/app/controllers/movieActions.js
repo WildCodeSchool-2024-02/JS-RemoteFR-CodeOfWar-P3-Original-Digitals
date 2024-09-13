@@ -39,7 +39,7 @@ const readByTitle = async (req, res, next) => {
 const readByCategory = async (req, res, next) => {
   try {
     const movies = await tables.movie.searchByCategory(req.params.type);
-    console.info(movies);
+    res.json(movies);
   } catch (error) {
     next(error);
   }

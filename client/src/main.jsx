@@ -5,10 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import {
   getAuth,
-  getMovies,
   getUsers,
   getMoviesByTitle,
-  categoriesMoviesLoader,
+  getMoviesWithCategories,
 } from "./services/request";
 
 import MoviesList from "./pages/MoviesList";
@@ -49,12 +48,7 @@ const router = createBrowserRouter([
       {
         path: "/movies",
         element: <MoviesList />,
-        loader: getMovies,
-      },
-      {
-        path: "/movies/categories",
-        element: <MoviesList />,
-        loader: categoriesMoviesLoader,
+        loader: getMoviesWithCategories,
       },
       {
         path: `/movies/search/:title`,

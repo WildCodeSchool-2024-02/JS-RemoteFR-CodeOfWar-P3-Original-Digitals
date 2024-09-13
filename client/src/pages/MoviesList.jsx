@@ -1,20 +1,23 @@
 import { useLoaderData } from "react-router-dom";
-
-import MovieCard from "../components/MovieCard";
 import "../styles/Movielist.css";
+import CategoryCard from "../components/CategoryCard";
 
 export default function MoviesList() {
-  const data = useLoaderData();
+  const { movies, categories } = useLoaderData();
 
-  console.info("depuis MovieList", data);
+  console.info("depuis MovieList", movies, categories);
 
   return (
-    <div className="card-container">
-      {data.categories.map((category) => (
-        <section key={category.id}>{category.type}</section>
-      ))}
-      {data.movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
+    //   <div>
+    //     {movies.map((movie) => (
+    //       <MovieCard key={movie.id} movie={movie} />
+    //     ))}
+    //   </div>
+    <div>
+      {categories.map((category) => (
+        <section key={category.id}>
+          <CategoryCard category={category.type} movies={movies} />
+        </section>
       ))}
     </div>
   );
