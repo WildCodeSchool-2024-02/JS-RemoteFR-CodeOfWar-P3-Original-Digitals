@@ -40,6 +40,21 @@ GROUP BY
     );
     return rows;
   }
+
+  async searchByCategory(type) {
+    const [result] = await this.database.query(
+      `SELECT category.id, category.type, movie.id, movie.title, movie.picture
+FROM
+    movie
+    INNER JOIN movie_category ON movie.id = movie_category.movie_id
+    INNER JOIN category ON category.id = movie_category.category_id
+WHERE
+    category.type = ?
+ORDER BY category.type;`,
+      [`${type}`]
+    );
+    return result;
+  }
 }
 
 module.exports = MovieRepository;
