@@ -14,8 +14,6 @@ export default function MovieDetails({ modalRef, movie }) {
     modalRef.current.close();
   };
 
-  console.info("depuis movieDetail", movie);
-
   return (
     <dialog className="dialog-details" ref={modalRef}>
       <ReactPlayer

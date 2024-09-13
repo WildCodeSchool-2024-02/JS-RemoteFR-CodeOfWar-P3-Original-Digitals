@@ -6,9 +6,8 @@ class MovieRepository extends AbstractRepository {
   }
 
   async readAll() {
-    // const [rows] = await this.database.query(`select * from ${this.table}`);
-
-    const [result] = await this.database.query(`SELECT movie.title, movie.duration, movie.synopsis, movie.date, movie.classification, movie.picture, movie.URL, GROUP_CONCAT(category.type SEPARATOR ", ") AS "type"
+    const [result] = await this.database
+      .query(`SELECT movie.title, movie.duration, movie.synopsis, movie.date, movie.classification, movie.picture, movie.URL, GROUP_CONCAT(category.type SEPARATOR ", ") AS "type"
 FROM
     ${this.table}
     INNER JOIN movie_category ON movie.id = movie_category.movie_id
@@ -20,7 +19,7 @@ GROUP BY
     movie.date,
     movie.classification,
     movie.picture,
-    movie.URL;`)
+    movie.URL;`);
 
     return result;
   }
