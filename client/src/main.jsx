@@ -2,7 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { getAuth, getMovies, getUsers, getMoviesByTitle } from "./services/request";
+
+import {
+  getAuth,
+  getMovies,
+  getUsers,
+  getMoviesByTitle,
+  categoriesMoviesLoader,
+} from "./services/request";
+
 import MoviesList from "./pages/MoviesList";
 
 import App from "./App";
@@ -21,7 +29,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         loader: getAuth,
-        errorElement: <LandingPage />
+        errorElement: <LandingPage />,
       },
       {
         path: "/sign",
@@ -42,6 +50,11 @@ const router = createBrowserRouter([
         path: "/movies",
         element: <MoviesList />,
         loader: getMovies,
+      },
+      {
+        path: "/movies/categories",
+        element: <MoviesList />,
+        loader: categoriesMoviesLoader,
       },
       {
         path: `/movies/search/:title`,

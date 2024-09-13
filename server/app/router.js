@@ -11,6 +11,7 @@ const itemActions = require("./controllers/itemActions");
 const movieActions = require("./controllers/movieActions");
 const userActions = require("./controllers/userActions");
 const authActions = require("./controllers/authActions");
+const categoryActions = require("./controllers/categoryActions");
 const auth = require("./services/auth");
 const middleware = require("./services/middleware");
 
@@ -21,6 +22,7 @@ router.post("/items", itemActions.add);
 
 // route to get a list of movies
 router.get("/movies", movieActions.browse);
+router.get("/movies/categories", categoryActions.browse);
 router.get("/movies/:id", movieActions.read);
 router.get("/movies/search/:title", movieActions.readByTitle);
 
@@ -28,8 +30,18 @@ router.get("/movies/search/:title", movieActions.readByTitle);
 router.get("/checkauth", auth.verifyToken, auth.isConnected);
 router.get("/users", userActions.browse);
 router.get("/users/:id", userActions.read);
-router.post("/sign", middleware.verifyFields, auth.hashPassword, userActions.add);
-router.post("/login", authActions.verifyEmailPassword, auth.createToken, authActions.login);
+router.post(
+  "/sign",
+  middleware.verifyFields,
+  auth.hashPassword,
+  userActions.add
+);
+router.post(
+  "/login",
+  authActions.verifyEmailPassword,
+  auth.createToken,
+  authActions.login
+);
 
 /* ************************************************************************* */
 
