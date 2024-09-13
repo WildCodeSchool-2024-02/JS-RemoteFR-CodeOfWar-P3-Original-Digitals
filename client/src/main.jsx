@@ -16,9 +16,15 @@ import App from "./App";
 import LandingPage from "./pages/LandingPage";
 import User from "./pages/User";
 import SignUp from "./pages/SignUp";
+
+import adminUploadAction from "./services/adminService";
+
 import { signUpUserAction, loginUserAction } from "./services/userService";
+
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
+
+import AdminPanel from "./pages/AdminPanel";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +64,11 @@ const router = createBrowserRouter([
       {
         path: "/landing",
         element: <LandingPage />,
+      },
+      {
+        path: "/admin",
+        element: <AdminPanel />,
+        action: adminUploadAction,
       },
     ],
   },

@@ -46,3 +46,16 @@ const readByCategory = async (req, res, next) => {
 };
 
 module.exports = { browse, read, readByTitle, readByCategory };
+const add = async (req, res, next) => {
+  const movie = req.body;
+  try {
+    const result = await tables.movie.uploadMovie(movie);
+
+    res.status(201).json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+    next(err);
+  }
+};
+
+module.exports = { browse, read, readByTitle, add };

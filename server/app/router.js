@@ -26,6 +26,7 @@ router.get("/movies/categories", categoryActions.browse);
 router.get("/movies/categories/:type", movieActions.readByCategory);
 router.get("/movies/:id", movieActions.read);
 router.get("/movies/search/:title", movieActions.readByTitle);
+router.post("/movies/add", movieActions.add);
 
 // routes for user related actions
 router.get("/checkauth", auth.verifyToken, auth.isConnected);

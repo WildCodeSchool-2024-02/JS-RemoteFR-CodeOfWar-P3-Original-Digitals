@@ -55,6 +55,22 @@ ORDER BY category.type;`,
     );
     return result;
   }
+
+  async uploadMovie(movie) {
+    const [rows] = await this.database.query(
+      `insert into ${this.table} (title, duration, synopsis, date, classification, picture, URL, admin_id) values ( ?, ?, ?, ?, ?, ?, ?, 1)`,
+      [
+        movie.title,
+        movie.duration,
+        movie.synopsis,
+        movie.date,
+        movie.classification,
+        movie.picture,
+        movie.URL,
+      ]
+    );
+    return rows;
+  }
 }
 
 module.exports = MovieRepository;

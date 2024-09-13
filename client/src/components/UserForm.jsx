@@ -5,8 +5,6 @@ function UserForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // const emailRef = useRef();
-
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
@@ -37,8 +35,8 @@ function UserForm() {
             placeholder="Enter your password"
             onChange={handlePasswordChange}
           />
-            {/* Indicateur de force du mot de passe */}
-        {password.length >= 8 ? "✅" : "❌"} minimum length at 8 characters
+          {/* Indicateur de force du mot de passe */}
+          {password.length >= 8 ? "✅" : "❌"} minimum length at 8 characters
         </div>
         {/* Champ pour la confirmation du mot de passe */}
         <div className="form-group">
@@ -50,8 +48,8 @@ function UserForm() {
             placeholder="Confirm your password"
             onChange={handleConfirmPasswordChange}
           />
-            {/* Indicateur de correspondance avec le mot de passe */}
-        {password === confirmPassword && password.length > 0 ? "✅" : "❌"}
+          {/* Indicateur de correspondance avec le mot de passe */}
+          {password === confirmPassword && password.length > 0 ? "✅" : "❌"}
         </div>
         {/* Champ pour le prénom */}
         <div className="form-group">
