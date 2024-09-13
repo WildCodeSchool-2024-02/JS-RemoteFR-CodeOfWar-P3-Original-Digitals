@@ -49,6 +49,23 @@
   border-radius: 8px;
   border-right: 1px black solid;
 }
+.navbar-landing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+.navbar-landing > img {
+  width: 128px;
+}
+
+.navbar-landing > a {
+  padding: 1rem;
+  background-color: var(--third-purple);
+  border-radius: 8px;
+  color: var(--primary-grey);
+}
 
 .menu-burger-button {
   width: 30px;

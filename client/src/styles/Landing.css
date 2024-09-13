@@ -1,8 +1,5 @@
-header {
-  display: flex;
-  justify-content: center;
-  height: 150px;
-  margin: 1rem;
+.landing-container {
+  margin-top: 2rem;
 }
 
 .attract-section {
@@ -13,9 +10,9 @@ header {
 
 .attract-section p {
   width: 16rem;
-  margin: auto;
-  margin-bottom: 1rem;
-  color: #c8b6ff;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  color: var(--third-purple);
 }
 
 .buttons {
@@ -23,6 +20,7 @@ header {
   flex-direction: column;
   text-align: center;
   margin: auto;
+  margin-top: 0.5rem;
   width: 12rem;
 }
 
@@ -43,8 +41,8 @@ header {
   font-size: 1.1rem;
   border-radius: 1rem;
   height: 4rem;
-  background-color: #3e435f;
-  color: #f2f2f4;
+  background-color: var(--third-purple);
+  color: var(--primary-grey);
   border: none;
   display: flex;
   align-items: center;

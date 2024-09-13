@@ -6,6 +6,7 @@ import "./styles/Navbar.css";
 import "./styles/Userform.css";
 import "./styles/Signup.css";
 import "./styles/Landing.css";
+import "./styles/Signin.css";
 
 function App() {
   return (

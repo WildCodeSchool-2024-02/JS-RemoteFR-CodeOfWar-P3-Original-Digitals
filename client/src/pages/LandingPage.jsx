@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/YouFilm-01.png";
 import Banner from "../assets/images/films-banner.png";
 
 function LandingPage() {
   return (
     <div className="landing-container">
-      <header>
-        <img src={Logo} alt="Logo YouFlim" />
-      </header>
       <section className="attract-section">
         <section className="pictures-movies">
           <img src={Banner} alt="Affiches de films et séries" />

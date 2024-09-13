@@ -1,0 +1,9 @@
+.signin-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.signin-container > img {
+  width: 150px;
+  margin: 4rem auto;
+}
