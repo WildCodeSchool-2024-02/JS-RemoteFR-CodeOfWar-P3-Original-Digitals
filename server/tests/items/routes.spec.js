@@ -1,79 +1,41 @@
 // Import required dependencies
-const { app, request, database } = require("../config");
+const { app, request } = require("../config");
 
-// Test suite for the GET /api/items route
-describe("GET /api/items", () => {
-  it("should fetch items successfully", async () => {
-    // Mock empty rows returned from the database
-    const rows = [];
+describe("GET /api/movies", () => {
+  it("it should return a list of movies", async () => {
+    const response = await request(app).get("/api/movies");
 
-    // Mock the implementation of the database query method
-    jest.spyOn(database, "query").mockImplementation(() => [rows]);
-
-    // Send a GET request to the /api/items endpoint
-    const response = await request(app).get("/api/items");
-
-    // Assertions
     expect(response.status).toBe(200);
-    expect(response.body).toStrictEqual(rows);
   });
 });
 
-// Test suite for the GET /api/items/:id route
-describe("GET /api/items/:id", () => {
-  it("should fetch a single item successfully", async () => {
-    // Mock rows returned from the database
-    const rows = [{}];
+describe("GET /api/movies/:id", () => {
+  it("it should return one movie when it exists", async () => {
+    const response = await request(app).get("/api/movies/1");
 
-    // Mock the implementation of the database query method
-    jest.spyOn(database, "query").mockImplementation(() => [rows]);
-
-    // Send a GET request to the /api/items/:id endpoint
-    const response = await request(app).get(`/api/items/1`);
-
-    // Assertions
     expect(response.status).toBe(200);
-    expect(response.body).toStrictEqual(rows[0]);
   });
 
-  it("should return 404 for non-existent item", async () => {
-    // Mock empty rows returned from the database
-    const rows = [];
+  it("it should return a 404 when the movie does not exist", async () => {
+    const response = await request(app).get("/api/movies/99");
 
-    // Mock the implementation of the database query method
-    jest.spyOn(database, "query").mockImplementation(() => [rows]);
-
-    // Send a GET request to the /api/items/:id endpoint with an invalid ID
-    const response = await request(app).get("/api/items/0");
-
-    // Assertions
     expect(response.status).toBe(404);
-    expect(response.body).toEqual({});
   });
 });
 
-// Test suite for the POST /api/items route
-// Doesn't pass: maybe something to change in app config :/
-// Hint: enabling error log could help ;)
-describe("POST /api/items", () => {
-  it("should add a new item successfully", async () => {
-    // Mock result of the database query
-    const result = [{ insertId: 1 }];
+describe("PUT /api/movies/:id", () => {
+  it("it should return ok when edited successfully", async () => {
+    const data = {
+      "title" : "Inception",
+      "duration" : "149",
+      "synopsis" : "description plus courte",
+      "date" : "2010-07-17",
+      "classification" : "16",
+      "picture" : "https://media.istockphoto.com/id/1129862281/fr/photo/constructions-de-gratte-ciel-dans-la-ville-urbaine-bangkok-thailand-tête-en-bas-pendant-la.jpg?b=1&s=612x612&w=0&k=20&c=w3Z-OZEF_Gtg-j-_t3SBvKRha_TA6vP_IHcZjjX7kVw=",
+      "URL" : "https://www.youtube.com/embed/CPTIgILtna8"
+  }
+    const response = await request(app).put("/api/movies/1").send(data);
 
-    // Mock the implementation of the database query method
-    jest.spyOn(database, "query").mockImplementation(() => [result]);
-
-    // Fake item data
-    const fakeItem = { title: "foo", user_id: 0 };
-
-    // Send a POST request to the /api/items endpoint with a test item
-    const response = await request(app).post("/api/items").send(fakeItem);
-
-    // Assertions
-    expect(response.status).toBe(201);
-    expect(response.body).toBeInstanceOf(Object);
-    expect(response.body.insertId).toBe(result.insertId);
+    expect(response.status).toBe(200);
   });
 });
-
-// TODO: test PUT and DELETE routes
