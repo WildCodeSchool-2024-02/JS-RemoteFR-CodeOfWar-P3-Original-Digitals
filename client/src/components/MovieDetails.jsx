@@ -1,10 +1,15 @@
+import { useContext } from "react";
 import ReactPlayer from "react-player";
-
 import PropTypes from "prop-types";
+import Like from "../assets/images/like.svg";
+import Liked from "../assets/images/like-filled.svg";
+
+import WatchListContext from "../contexts/WatchListContext";
 
 import "../styles/Moviedetails.css";
 
 export default function MovieDetails({ modalRef, movie }) {
+  const { watchlist, setWatchlist } = useContext(WatchListContext);
   const releaseDate = new Date(`${movie.date}`).getFullYear();
 
   const hours = Math.floor(`${movie.duration}` / 60);
@@ -12,6 +17,21 @@ export default function MovieDetails({ modalRef, movie }) {
 
   const closeModal = () => {
     modalRef.current.close();
+  };
+
+  const addWatchlist = () => {
+    setWatchlist((prevWatchlist) => {
+      const newWatchList = [...prevWatchlist];
+      if (newWatchList.includes(movie.id)) {
+        const index = newWatchList.indexOf(movie.id);
+        if (index > -1) {
+          newWatchList.splice(index, 1);
+        }
+      } else {
+        newWatchList.push(movie.id);
+      }
+      return newWatchList;
+    });
   };
 
   return (
@@ -53,6 +73,16 @@ export default function MovieDetails({ modalRef, movie }) {
       <section>
         <h3 className="detail-title"> Synopsis</h3>
         <p className="synopsis-movie">{movie.synopsis}</p>
+        <button
+          className="watchlist-button"
+          type="button"
+          onClick={addWatchlist}
+        >
+          <img
+            src={watchlist.includes(movie.id) ? { Liked } : { Like }}
+            alt="like"
+          />
+        </button>
       </section>
       <button type="button" onClick={closeModal} className="dialog-button">
         close
@@ -69,6 +99,7 @@ MovieDetails.propTypes = {
     }),
   }).isRequired,
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     URL: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,

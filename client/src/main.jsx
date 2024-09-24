@@ -11,6 +11,7 @@ import {
 } from "./services/request";
 import { signUpUserAction, editUserAction } from "./services/userService";
 import { AuthProvider } from "./contexts/AuthContext";
+import { WatchListProvider } from "./contexts/WatchListContext";
 import { multiFormAction } from "./services/adminService";
 
 import App from "./App";
@@ -80,7 +81,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <WatchListProvider>
+        <RouterProvider router={router} />
+      </WatchListProvider>
     </AuthProvider>
   </React.StrictMode>
 );
