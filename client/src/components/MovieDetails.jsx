@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import ReactPlayer from "react-player";
 import PropTypes from "prop-types";
-import Like from "../assets/images/like.svg";
-import Liked from "../assets/images/like-filled.svg";
+import WatchlistAdd from "../assets/images/watchlist.svg";
+import Watchlisted from "../assets/images/watchlisted.svg";
 
 import WatchListContext from "../contexts/WatchListContext";
 
 import "../styles/Moviedetails.css";
 
 export default function MovieDetails({ modalRef, movie }) {
-  const { watchlist, setWatchlist } = useContext(WatchListContext);
+  const { watchlist, setWatchList } = useContext(WatchListContext);
   const releaseDate = new Date(`${movie.date}`).getFullYear();
 
   const hours = Math.floor(`${movie.duration}` / 60);
@@ -20,7 +20,8 @@ export default function MovieDetails({ modalRef, movie }) {
   };
 
   const addWatchlist = () => {
-    setWatchlist((prevWatchlist) => {
+    console.info(movie);
+    setWatchList((prevWatchlist) => {
       const newWatchList = [...prevWatchlist];
       if (newWatchList.includes(movie.id)) {
         const index = newWatchList.indexOf(movie.id);
@@ -79,7 +80,7 @@ export default function MovieDetails({ modalRef, movie }) {
           onClick={addWatchlist}
         >
           <img
-            src={watchlist.includes(movie.id) ? { Liked } : { Like }}
+            src={watchlist.includes(movie.id) ? Watchlisted : WatchlistAdd}
             alt="like"
           />
         </button>
