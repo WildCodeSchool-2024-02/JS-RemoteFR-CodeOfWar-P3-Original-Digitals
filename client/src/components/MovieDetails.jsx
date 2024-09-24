@@ -20,7 +20,6 @@ export default function MovieDetails({ modalRef, movie }) {
   };
 
   const addWatchlist = () => {
-    console.info(movie);
     setWatchList((prevWatchlist) => {
       const newWatchList = [...prevWatchlist];
       if (newWatchList.includes(movie.id)) {
