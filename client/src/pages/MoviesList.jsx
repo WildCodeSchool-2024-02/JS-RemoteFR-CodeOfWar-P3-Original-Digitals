@@ -1,16 +1,16 @@
-import { useLoaderData } from "react-router-dom";
-
+import PropTypes from "prop-types";
 import MovieCard from "../components/MovieCard";
-import "../styles/Movielist.css";
 
-export default function MoviesList() {
-  const data = useLoaderData();
-
+export default function MoviesList({ movies }) {
   return (
     <div className="card-container">
-      {data.map((movie) => (
+      {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
     </div>
   );
 }
+
+MoviesList.propTypes = {
+  movies: PropTypes.shape.isRequired,
+};

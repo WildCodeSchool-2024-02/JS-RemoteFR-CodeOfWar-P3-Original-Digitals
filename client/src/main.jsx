@@ -52,11 +52,6 @@ const router = createBrowserRouter([
         loader: getUserById,
       },
       {
-        path: "/movies",
-        element: <MoviesList />,
-        loader: getMovies,
-      },
-      {
         path: `/movies/search/:title`,
         element: <MoviesList />,
         loader: getMoviesByTitle,
@@ -73,7 +68,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/watchlist",
-        element: <Watchlist />
+        element: <Watchlist />,
+        loader: getMovies,
       },
     ],
   },
