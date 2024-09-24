@@ -82,8 +82,8 @@ function NavBar() {
                     My account
                   </Link>
                   <div className="separation-line" />
-                  <Link to="/movies" onClick={toggleMenu}>
-                    Movie List
+                  <Link to="/watchlist" onClick={toggleMenu}>
+                    Watchlist
                   </Link>
                   <div className="separation-line" />
                   <LogoutButton variant="navbar"/>

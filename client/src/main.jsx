@@ -21,6 +21,7 @@ import Home from "./pages/Home";
 import AdminPanel from "./pages/AdminPanel";
 import MoviesList from "./pages/MoviesList";
 import Login from "./pages/Login";
+import Watchlist from "./pages/Watchlist";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
         element: <AdminPanel />,
         action: multiFormAction,
         loader: getMovies,
+      },
+      {
+        path: "/watchlist",
+        element: <Watchlist />
       },
     ],
   },
