@@ -69,7 +69,7 @@ function NavBar() {
               src={burger}
               alt=""
             />
-            <div className="links-list">
+            <div className="links-list links-list-desktop">
               <Link to="/" onClick={toggleMenu}>
                 Home
               </Link>
