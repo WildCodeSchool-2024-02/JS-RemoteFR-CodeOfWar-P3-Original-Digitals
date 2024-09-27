@@ -1,18 +1,15 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Form, useActionData } from "react-router-dom";
 
 export default function MovieFormEdit({
-  movies,
+  selectMovie,
   handleFormUpdate,
   handleSelectMovieClose,
 }) {
   const validateAction = useActionData();
-  const [formValues, setFormValues] = useState(movies);
 
-  useEffect(() => {
-    setFormValues(movies);
-  }, [movies]);
+  const [formValues, setFormValues] = useState(selectMovie);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,9 +35,10 @@ export default function MovieFormEdit({
         <div className="form-group-upload">
           <label htmlFor="id">ID</label>
           <input
-            type="number"
+            type="hidden"
             id="id"
             name="id"
+            readOnly
             value={parseInt(formValues.id, 10)}
           />
         </div>
@@ -121,7 +119,7 @@ export default function MovieFormEdit({
           name="intent"
           value="put"
         >
-          Modifier
+          Modify
         </button>
 
         {validateAction?.success === true && (
@@ -136,7 +134,7 @@ export default function MovieFormEdit({
 }
 
 MovieFormEdit.propTypes = {
-  movies: PropTypes.shape({
+  selectMovie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
     synopsis: PropTypes.string.isRequired,

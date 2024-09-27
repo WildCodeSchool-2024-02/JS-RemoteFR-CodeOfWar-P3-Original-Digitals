@@ -77,7 +77,6 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <AdminPanel />,
         action: multiFormAction,
-        loader: getMovies,
       },
       {
         path: "/watchlist",
